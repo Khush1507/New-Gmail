@@ -94,7 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.red,
+        selectedItemColor: Colors.red, 
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.blue, 
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(

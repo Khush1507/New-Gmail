@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import '../services/firestore_service.dart';
 
 class EmailDetailScreen extends StatelessWidget {
-  final int emailIndex;
+  final Email email;
 
-  EmailDetailScreen({required this.emailIndex});
+  EmailDetailScreen({required this.email});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Email $emailIndex'),
+        title: Text(email.subject),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -17,20 +18,18 @@ class EmailDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Email Subject $emailIndex',
+              email.subject,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
-            Text('From: sender@example.com'),
-            SizedBox(height: 8),
-            Text('To: recipient@example.com'),
             SizedBox(height: 16),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Text(
-                  'Email body for email $emailIndex...',
-                ),
-              ),
+            Text(
+              email.content,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Sent on ${email.timestamp}',
+              style: TextStyle(color: Colors.grey),
             ),
           ],
         ),
