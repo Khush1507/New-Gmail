@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'screens/home_screen.dart';
+import 'compose_screen.dart';
+import 'firebase_options.dart'; // Ensure you have this file
+import 'inbox_screen.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
@@ -16,7 +20,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: HomeScreen(),
+      home: InboxScreen(),
+      routes: {
+        ComposeScreen.routeName: (context) => ComposeScreen(),
+        InboxScreen.routeName: (context) => InboxScreen(),
+      },
     );
   }
 }
